@@ -3,6 +3,7 @@
 
 bool PNet::Network::Initialize()
 {
+#ifdef _WIN32
 	WSADATA wsadata;
 	int result = WSAStartup(MAKEWORD(2, 2), &wsadata);
 	if (result != 0) //If winsock API failed to start up
@@ -16,11 +17,13 @@ bool PNet::Network::Initialize()
 		std::cerr << "Could not find a usable version of the winsock api dll." << std::endl;
 		return false;
 	}
-
+#endif
 	return true;
 }
 
 void PNet::Network::Shutdown()
 {
+#ifdef _WIN32
 	WSACleanup();
+#endif
 }

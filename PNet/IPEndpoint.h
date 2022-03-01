@@ -2,7 +2,16 @@
 #include "IPVersion.h"
 #include <string>
 #include <vector>
-#include <WS2tcpip.h>
+#ifdef _WIN32
+	#include <WS2tcpip.h>
+#else
+	#include <arpa/inet.h>
+	#include <netdb.h>
+	#include <sys/socket.h>
+	#include <netinet/in.h>
+	#include <netinet/tcp.h>
+	#include <unistd.h>
+#endif
 
 namespace PNet
 {

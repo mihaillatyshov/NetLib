@@ -2,6 +2,14 @@
 #include "Socket.h"
 #include "PacketManager.h"
 
+#ifndef _WIN32
+	#include <poll.h>
+	typedef pollfd WSAPOLLFD;
+	#ifndef WSAPoll
+		#define WSAPoll(fds, nfds, timeout) poll(fds, nfds, timeout)
+	#endif
+#endif
+
 namespace PNet
 {
 	class TCPConnection

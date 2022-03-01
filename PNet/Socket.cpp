@@ -2,6 +2,10 @@
 #include <assert.h>
 #include <iostream>
 
+#ifndef _WIN32
+	#include <sys/ioctl.h>
+#endif
+
 namespace PNet
 {
 	Socket::Socket(IPVersion ipversion, SocketHandle handle)
@@ -119,7 +123,7 @@ namespace PNet
 		if (ipversion == IPVersion::IPv4)
 		{
 			sockaddr_in addr = {};
-			int len = sizeof(sockaddr_in);
+			uint32_t len = sizeof(sockaddr_in);
 			SocketHandle acceptedConnectionHandle = accept(handle, (sockaddr*)(&addr), &len);
 			if (acceptedConnectionHandle == INVALID_SOCKET)
 			{
@@ -137,7 +141,7 @@ namespace PNet
 		else //IPv6
 		{
 			sockaddr_in6 addr = {};
-			int len = sizeof(sockaddr_in6);
+			uint32_t len = sizeof(sockaddr_in6);
 			SocketHandle acceptedConnectionHandle = accept(handle, (sockaddr*)(&addr), &len);
 			if (acceptedConnectionHandle == INVALID_SOCKET)
 			{

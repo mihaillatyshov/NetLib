@@ -3,7 +3,9 @@
 
 #include "MyServer.h"
 #include <iostream>
-#include <conio.h>
+#ifdef _WIN32
+	#include <conio.h>
+#endif
 
 int main()
 {
@@ -15,11 +17,13 @@ int main()
 			while (true)
 			{
 				server.Frame();
+#ifdef _WIN32
 				if (_kbhit()) 
 				{
 					_getch();
 					server.SendMyMessage("New message from the server!");
 				}
+#endif
 			}
 		}
 	}

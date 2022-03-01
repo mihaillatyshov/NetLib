@@ -1,7 +1,11 @@
 #pragma once
-#define WIN32_LEAN_AND_MEAN
+#ifdef _WIN32
+	#define WIN32_LEAN_AND_MEAN
+	#include <winsock.h>
+#else
+	#include <arpa/inet.h>
+#endif
 #include <vector>
-#include <winsock.h>
 #include "PacketException.h"
 #include "PacketType.h"
 

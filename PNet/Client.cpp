@@ -1,5 +1,6 @@
 #include "Client.h"
 #include <iostream>
+#include <string.h>
 
 namespace PNet
 {
@@ -53,7 +54,6 @@ namespace PNet
 		}
 
 		use_fd = master_fd;
-
 		if (WSAPoll(&use_fd, 1, 1) > 0)
 		{
 

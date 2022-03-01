@@ -1,6 +1,7 @@
 #include "Server.h"
 #include <iostream>
 #include "Network.h"
+#include <string.h>
 
 namespace PNet
 {

@@ -3,7 +3,9 @@
 
 #include "MyClient.h"
 #include <iostream>
-#include <conio.h>
+#ifdef _WIN32
+	#include <conio.h>
+#endif
 
 int main()
 {
@@ -15,6 +17,7 @@ int main()
 			while (client.IsConnected())
 			{
 				client.Frame();
+#ifdef _WIN32
 				if (_kbhit())
 				{
 					_getch();
@@ -23,6 +26,7 @@ int main()
 					std::cin >> MyMessage;
 					client.SendMyMessage(MyMessage);
 				}
+#endif
 			}
 		}
 	}
